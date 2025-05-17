@@ -12,12 +12,14 @@ public class EnemyMoveWalkingChase : MonoBehaviour
     private Transform playerTransform;
     private Rigidbody2D rb; //rb of enemy
     private Animator animator; //animator of enemy
+    private SpriteRenderer sr;  //sprite renderer of enemy
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         playerTransform = GameObject.FindGameObjectWithTag("Player").transform; //find player
+        sr = GetComponent<SpriteRenderer>(); //get sprite renderer
     }
 
     void Update()
@@ -61,11 +63,11 @@ public class EnemyMoveWalkingChase : MonoBehaviour
     {
         if(playerDirection.x < 0)
         {
-            transform.rotation = Quaternion.Euler(0, 0, 0); //face left
+            sr.flipX = false;
         }
         else
         {
-            transform.rotation = Quaternion.Euler(0, 180, 0); //face right
+            sr.flipX = true; 
         }
     }
 
